@@ -1,0 +1,40 @@
+name: Build unsigned iOS IPA
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.app 2>/dev/null || true
+
+      - name: Archive (unsigned)
+        run: |
+          xcodebuild -project Stilltime.xcodeproj -scheme Stilltime \
+            -configuration Release -destination "generic/platform=iOS" \
+            -archivePath build/Stilltime.xcarchive \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            AD_HOC_CODE_SIGNING_ALLOWED=YES \
+            archive
+
+      - name: Package IPA (unsigned, for Sideloadly/AltStore-style local resigning)
+        run: |
+          set -e
+          APP_PATH="build/Stilltime.xcarchive/Products/Applications/Stilltime.app"
+          mkdir -p build/Payload
+          cp -r "$APP_PATH" build/Payload/
+          cd build
+          zip -qr Stilltime-unsigned.ipa Payload
+          cd ..
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Stilltime-unsigned-ipa
+          path: build/Stilltime-unsigned.ipa
+          retention-days: 14
