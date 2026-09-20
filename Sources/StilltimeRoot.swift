@@ -333,7 +333,7 @@ private struct FocusView: View {
                             Text("TIME REMAINING")
                                 .font(.caption.bold())
                                 .foregroundStyle(.secondary)
-                                .letterSpacing(1)
+                                .tracking(1)
                         }
                     }
                     .frame(maxWidth: 290)
@@ -1020,7 +1020,7 @@ private struct UsageLimitEditorSheet: View {
                 Section("Daily budget") {
                     Stepper("\(dailyMinutes) minutes / day", value: $dailyMinutes, in: 5...480, step: 5)
                 }
-                Section("Apps") {
+                Section {
                     Button {
                         pickerPresented = true
                     } label: {
@@ -1031,6 +1031,8 @@ private struct UsageLimitEditorSheet: View {
                                 .foregroundStyle(.secondary)
                         }
                     }
+                } header: {
+                    Text("Apps")
                 } footer: {
                     Text("Once total time in these apps reaches \(dailyMinutes) minutes today, they shield until tomorrow.")
                 }
