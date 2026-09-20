@@ -1,0 +1,4 @@
+// Set these two values to your Apple development team and a unique reverse-domain prefix.
+DEVELOPMENT_TEAM =
+APP_BUNDLE_PREFIX = com.example
+STILLTIME_APP_GROUP = group.$(APP_BUNDLE_PREFIX).stilltime

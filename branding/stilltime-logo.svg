@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="312" height="40" viewBox="0 0 312 40">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- ring mark -->
+  <g transform="rotate(-90 20 20)">
+    <circle cx="20" cy="20" r="15" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="2.5"/>
+    <circle cx="20" cy="20" r="15" fill="none" stroke="#C2F74D" stroke-width="2.5"
+            stroke-linecap="round" stroke-dasharray="67.9 94.2" filter="url(#glow)"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="46" y="21" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif"
+        font-size="16" font-weight="700" fill="#FFFFFF" letter-spacing="6.7">STILLTIME</text>
+
+  <!-- tagline -->
+  <text x="47" y="34" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif"
+        font-size="7" font-weight="600" fill="#B3BEC4" letter-spacing="2.6">A QUIETER PHONE. A BRIGHTER YOU.</text>
+</svg>
